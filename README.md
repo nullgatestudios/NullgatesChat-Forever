@@ -1,4 +1,4 @@
-# Bleakfiber's Chat (Forever)
+# Nullgate's Chat (Forever)
 
 A high-performance, modular, minimalist chat enhancement suite for World of Warcraft Forever (Interface `16001`).
 
@@ -13,15 +13,15 @@ A high-performance, modular, minimalist chat enhancement suite for World of Warc
 - **Command & EditBox History**: Remembers your sent commands across sessions with Up/Down arrow navigation and optional sticky channel memory.
 - **Chat Log Copy Dialog**: Provides a one-click copy button to export formatted chat text for Discord, bug reports, or note-taking.
 - **Clean Interface & Modernization**: Suppresses default Blizzard button clutter, unclamps chat frames for flexible positioning, and enables smooth mousewheel scrolling.
-- **Master Hub Integration**: Native integration with `BleakfibersAddonConfig-Forever` with dual-mode standalone options and non-destructive profile capture.
+- **Master Hub Integration**: Native integration with `NullgatesAddonConfig-Forever` with dual-mode standalone options and non-destructive profile capture.
 
 ---
 
 ## 💻 Commands
 
-- `/bfchat` or `/chat` - Toggle the settings window.
-- `/bfchat copy` - Open the chat log copy dialog for the active window.
-- `/bfchat clear` - Clear chat history buffer.
+- `/nchat` or `/chat` - Toggle the settings window.
+- `/nchat copy` - Open the chat log copy dialog for the active window.
+- `/nchat clear` - Clear chat history buffer.
 
 ---
 

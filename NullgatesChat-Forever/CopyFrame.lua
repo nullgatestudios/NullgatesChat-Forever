@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Chat - CopyFrame.lua
+    Nullgate's Chat - CopyFrame.lua
     Interactive Dialogs: URL Copy Modal & Full Chat Log Copy Dialog
     Dark Slate & Gold Presentation Layer
 ]]
@@ -9,7 +9,7 @@ BFC = BFC or {}
 
 local CopyFrame = {}
 BFC.CopyFrame = CopyFrame
-_G["BleakfibersChatCopyFrame"] = CopyFrame
+_G["NullgatesChatCopyFrame"] = CopyFrame
 
 local BACKDROP_TEMPLATE = BackdropTemplateMixin and "BackdropTemplate" or nil
 
@@ -50,7 +50,7 @@ local urlDialog = nil
 local function CreateURLDialog()
     if urlDialog then return urlDialog end
 
-    local f = CreateFrame("Frame", "BleakfibersChat_URLDialog", UIParent, BACKDROP_TEMPLATE)
+    local f = CreateFrame("Frame", "NullgatesChat_URLDialog", UIParent, BACKDROP_TEMPLATE)
     f:SetSize(460, 130)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 80)
     f:SetFrameStrata("DIALOG")
@@ -69,7 +69,7 @@ local function CreateURLDialog()
     -- Header Title
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", f, "TOPLEFT", 14, -12)
-    title:SetText("|cffffd100Bleakfiber's Chat|r - Copy Link")
+    title:SetText("|cffffd100Nullgate's Chat|r - Copy Link")
 
     -- Subtitle / Instructions
     local subtitle = f:CreateFontString(nil, "OVERLAY", "GameFontHighlightSmall")
@@ -142,7 +142,7 @@ local chatLogDialog = nil
 local function CreateChatLogDialog()
     if chatLogDialog then return chatLogDialog end
 
-    local f = CreateFrame("Frame", "BleakfibersChat_ChatLogDialog", UIParent, BACKDROP_TEMPLATE)
+    local f = CreateFrame("Frame", "NullgatesChat_ChatLogDialog", UIParent, BACKDROP_TEMPLATE)
     f:SetSize(600, 440)
     f:SetPoint("CENTER", UIParent, "CENTER", 0, 40)
     f:SetFrameStrata("DIALOG")
@@ -168,7 +168,7 @@ local function CreateChatLogDialog()
     -- Header Title
     local title = f:CreateFontString(nil, "OVERLAY", "GameFontNormal")
     title:SetPoint("TOPLEFT", f, "TOPLEFT", 16, -14)
-    title:SetText("|cffffd100Bleakfiber's Chat|r - Chat Log Copy")
+    title:SetText("|cffffd100Nullgate's Chat|r - Chat Log Copy")
     f.title = title
 
     -- Subtitle
@@ -186,7 +186,7 @@ local function CreateChatLogDialog()
     inset:SetBackdropBorderColor(unpack(COLORS.goldMuted))
 
     -- ScrollFrame
-    local scrollFrame = CreateFrame("ScrollFrame", "BleakfibersChatLogScrollFrame", inset, "UIPanelScrollFrameTemplate")
+    local scrollFrame = CreateFrame("ScrollFrame", "NullgatesChatLogScrollFrame", inset, "UIPanelScrollFrameTemplate")
     scrollFrame:SetPoint("TOPLEFT", inset, "TOPLEFT", 6, -6)
     scrollFrame:SetPoint("BOTTOMRIGHT", inset, "BOTTOMRIGHT", -26, 6)
     scrollFrame:EnableMouseWheel(true)
@@ -306,7 +306,7 @@ function CopyFrame:ShowChatLog(chatFrame, textLines)
     local tab = _G[frameName .. "Tab"]
     local tabName = (tab and tab.GetText and tab:GetText()) or frameName
 
-    f.title:SetText(string.format("|cffffd100Bleakfiber's Chat|r - Copy: |cffffffff%s|r", tabName))
+    f.title:SetText(string.format("|cffffd100Nullgate's Chat|r - Copy: |cffffffff%s|r", tabName))
 
     local formatted = ""
     local lineCount = 0

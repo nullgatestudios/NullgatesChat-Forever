@@ -18,8 +18,8 @@ if LSM then
     LSM:Register("font", "Nata Sans Regular", fontPath .. "NataSans-Regular.ttf")
     LSM:Register("font", "Nata Sans Bold", fontPath .. "NataSans-Bold.ttf")
     LSM:Register("font", "Nata Sans Medium", fontPath .. "NataSans-Medium.ttf")
-    LSM:Register("font", "BleakUI Regular", fontPath .. "NataSans-Regular.ttf")
-    LSM:Register("font", "BleakUI Bold", fontPath .. "NataSans-Bold.ttf")
+    LSM:Register("font", "NullgateUI Regular", fontPath .. "NataSans-Regular.ttf")
+    LSM:Register("font", "NullgateUI Bold", fontPath .. "NataSans-Bold.ttf")
 end
 
 if LSM then
@@ -34,7 +34,7 @@ if LSM then
     LSM:Register("font", "Roboto Condensed Bold", fontPath .. "RobotoCondensed-Bold.ttf")
 
     -- Register Status Bar Textures
-    LSM:Register("statusbar", "BleakFlat", "Interface\\Buttons\\WHITE8x8")
+    LSM:Register("statusbar", "NullgateFlat", "Interface\\Buttons\\WHITE8x8")
     LSM:Register("statusbar", "Blizzard", "Interface\\TargetingFrame\\UI-StatusBar")
     LSM:Register("statusbar", "Blizzard Raid", "Interface\\RaidFrame\\Raid-Bar-Hp-Fill")
 end
@@ -92,7 +92,7 @@ end
 
 function BFC:FetchStatusbar(barName)
     if not barName or barName == "" then
-        barName = "BleakFlat"
+        barName = "NullgateFlat"
     end
 
     if LSM then

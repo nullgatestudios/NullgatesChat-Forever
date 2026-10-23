@@ -1,5 +1,15 @@
 # Changelog - Bleakfiber's Chat (Forever)
 
+## [1.1.0] - 2026-10-23: Bleakfiber's Chat is now Nullgate's Chat
+
+### Changed
+- **New name**: Bleakfiber's Chat is now **Nullgate's Chat**, from **Nullgate Studios**. It is the same addon on the same CurseForge page.
+- **A fresh start for the WoW Forever launch**: the addon now lives in the `NullgatesChat-Forever` folder. Settings from the beta are not carried over, so set the addon up again.
+- **Remove the old version**: if you copied your old `Interface` folder over, delete the `BleakfibersChat-Forever` folder from `Interface\AddOns`. If the old version is still installed, a message offers to disable it.
+- **New slash commands**: `/nchat` (or `/chat`) opens the settings. The old `/bfchat` commands no longer exist, so please update any macros that use them.
+- **Chat history**: saved chat history from the beta is not carried over.
+- **Shared media names**: the bundled fonts are now listed as **NullgateUI Regular** and **NullgateUI Bold** in addons that use LibSharedMedia.
+
 ## [1.0.9] - 2026-10-10
 
 ### Fixed

@@ -1,12 +1,12 @@
 --[[
-    Bleakfiber's Chat - Core.lua
+    Nullgate's Chat - Core.lua
     Gameplay & Event Engine: URL Detection, Universal Class Colors,
     Whisper Popout Routing, Persistent History, EditBox & Clutter Suppression
 ]]
 
 local addonName, BFC = ...
-BFC = LibStub("AceAddon-3.0"):NewAddon(BFC, "BleakfibersChat", "AceEvent-3.0", "AceHook-3.0")
-_G["BleakfibersChatCore"] = BFC
+BFC = LibStub("AceAddon-3.0"):NewAddon(BFC, "NullgatesChat", "AceEvent-3.0", "AceHook-3.0")
+_G["NullgatesChatCore"] = BFC
 
 -- Backdrop template compatibility for Retail / Dragonflight / 3.3.5 / Ascension
 local BACKDROP_TEMPLATE = BackdropTemplateMixin and "BackdropTemplate" or nil
@@ -135,7 +135,7 @@ function BFC:OnEnable()
 end
 
 function BFC:ADDON_LOADED(event, loadedAddon)
-    if loadedAddon == "BleakfibersAddonConfig-Forever" or loadedAddon == "BleakfibersAddonConfig" or loadedAddon == "BleakfibersAddonConfigForever" then
+    if loadedAddon == "NullgatesAddonConfig-Forever" or loadedAddon == "NullgatesAddonConfig" or loadedAddon == "NullgatesAddonConfigForever" then
         self:RegisterWithMasterConfig()
     end
 end
@@ -504,7 +504,7 @@ function BFC:SetupUrlDetection()
             if link and link:sub(1, 4) == "url:" then
                 local url = link:sub(5)
                 if not IsShiftKeyDown() and BFC.CopyFrame and BFC.CopyFrame.ShowURL then
-                    local urlDlg = _G["BleakfibersChat_URLDialog"]
+                    local urlDlg = _G["NullgatesChat_URLDialog"]
                     if not (urlDlg and urlDlg:IsShown()) then
                         BFC.CopyFrame:ShowURL(url)
                     end
@@ -526,7 +526,7 @@ local function CreateCopyButton(chatFrame)
 
     local btn = copyButtons[frameName]
     if not btn then
-        btn = CreateFrame("Button", frameName .. "BleakCopyBtn", chatFrame)
+        btn = CreateFrame("Button", frameName .. "NullgateCopyBtn", chatFrame)
         btn:SetSize(16, 16)
         btn:SetPoint("TOPRIGHT", chatFrame, "TOPRIGHT", -2, -2)
         btn:SetAlpha(0.35)
@@ -765,8 +765,8 @@ function BFC:ApplyFrameBackdrop(chatFrame)
     local db = self.db or {}
 
     if db.enableCustomBackdrop then
-        if not chatFrame.bleakBackdrop then
-            local bd = CreateFrame("Frame", fName .. "BleakBackdrop", chatFrame, BACKDROP_TEMPLATE)
+        if not chatFrame.nullgateBackdrop then
+            local bd = CreateFrame("Frame", fName .. "NullgateBackdrop", chatFrame, BACKDROP_TEMPLATE)
             if not bd.SetBackdrop and BackdropTemplateMixin then
                 Mixin(bd, BackdropTemplateMixin)
                 if bd.OnBackdropLoaded then bd:OnBackdropLoaded() end
@@ -784,7 +784,7 @@ function BFC:ApplyFrameBackdrop(chatFrame)
                     insets = { left = 3, right = 3, top = 3, bottom = 3 }
                 })
             end
-            chatFrame.bleakBackdrop = bd
+            chatFrame.nullgateBackdrop = bd
         end
 
         local th = db.theme or {}
@@ -797,16 +797,16 @@ function BFC:ApplyFrameBackdrop(chatFrame)
         local bB = th.borderB or 0.28
         local bA = th.borderA or 0.85
 
-        if chatFrame.bleakBackdrop.SetBackdropColor then
-            chatFrame.bleakBackdrop:SetBackdropColor(bgR, bgG, bgB, bgA)
+        if chatFrame.nullgateBackdrop.SetBackdropColor then
+            chatFrame.nullgateBackdrop:SetBackdropColor(bgR, bgG, bgB, bgA)
         end
-        if chatFrame.bleakBackdrop.SetBackdropBorderColor then
-            chatFrame.bleakBackdrop:SetBackdropBorderColor(bR, bG, bB, bA)
+        if chatFrame.nullgateBackdrop.SetBackdropBorderColor then
+            chatFrame.nullgateBackdrop:SetBackdropBorderColor(bR, bG, bB, bA)
         end
-        chatFrame.bleakBackdrop:Show()
+        chatFrame.nullgateBackdrop:Show()
     else
-        if chatFrame.bleakBackdrop then
-            chatFrame.bleakBackdrop:Hide()
+        if chatFrame.nullgateBackdrop then
+            chatFrame.nullgateBackdrop:Hide()
         end
     end
 end
@@ -1123,13 +1123,13 @@ local function SkinEditBox(editBox)
         if left then left:SetAlpha(1) end
         if right then right:SetAlpha(1) end
         if mid then mid:SetAlpha(1) end
-        if editBox.bleakBackdrop then
-            editBox.bleakBackdrop:Hide()
+        if editBox.nullgateBackdrop then
+            editBox.nullgateBackdrop:Hide()
         end
         return
     end
 
-    if not editBox.bleakBackdrop then
+    if not editBox.nullgateBackdrop then
         local bd = CreateFrame("Frame", nil, editBox, BACKDROP_TEMPLATE)
         if not bd.SetBackdrop and BackdropTemplateMixin then
             Mixin(bd, BackdropTemplateMixin)
@@ -1153,23 +1153,23 @@ local function SkinEditBox(editBox)
         if bd.SetBackdropBorderColor then
             bd:SetBackdropBorderColor(0.82, 0.68, 0.28, 0.85)
         end
-        editBox.bleakBackdrop = bd
+        editBox.nullgateBackdrop = bd
 
         editBox:SetTextInsets(8, 8, 0, 0)
 
         editBox:HookScript("OnEditFocusGained", function(self)
-            if self.bleakBackdrop and self.bleakBackdrop.SetBackdropBorderColor then
-                self.bleakBackdrop:SetBackdropBorderColor(1.00, 0.82, 0.25, 1.00)
+            if self.nullgateBackdrop and self.nullgateBackdrop.SetBackdropBorderColor then
+                self.nullgateBackdrop:SetBackdropBorderColor(1.00, 0.82, 0.25, 1.00)
             end
         end)
         editBox:HookScript("OnEditFocusLost", function(self)
-            if self.bleakBackdrop and self.bleakBackdrop.SetBackdropBorderColor then
-                self.bleakBackdrop:SetBackdropBorderColor(0.50, 0.42, 0.20, 0.85)
+            if self.nullgateBackdrop and self.nullgateBackdrop.SetBackdropBorderColor then
+                self.nullgateBackdrop:SetBackdropBorderColor(0.50, 0.42, 0.20, 0.85)
             end
         end)
     end
 
-    editBox.bleakBackdrop:Show()
+    editBox.nullgateBackdrop:Show()
     BFC:ApplyEditBoxTypography(editBox)
 end
 
@@ -1304,3 +1304,36 @@ function BFC:ApplySettings()
     end
 end
 
+-- ---------------------------------------------------------------------------
+-- Pre-rebrand version still installed (e.g. a copied Interface folder) would run twice
+-- ---------------------------------------------------------------------------
+do
+    local OLD_ADDON = "BleakfibersChat-Forever"
+    local IsAddOnLoaded = (C_AddOns and C_AddOns.IsAddOnLoaded) or IsAddOnLoaded
+    local DisableAddOn = (C_AddOns and C_AddOns.DisableAddOn) or DisableAddOn
+
+    StaticPopupDialogs["NULLGATES_CHAT_OLD_ADDON"] = {
+        text = "Bleakfiber's Chat is now Nullgate's Chat, and the old version is still installed. Running both loads it twice. Disable the old one now, then delete the BleakfibersChat-Forever folder from Interface\\AddOns.",
+        button1 = "Disable and Reload",
+        button2 = CANCEL,
+        OnAccept = function()
+            DisableAddOn(OLD_ADDON)
+            ReloadUI()
+        end,
+        timeout = 0,
+        whileDead = true,
+        hideOnEscape = true,
+        preferredIndex = 3,
+    }
+
+    local guard = CreateFrame("Frame")
+    guard:RegisterEvent("PLAYER_LOGIN")
+    guard:SetScript("OnEvent", function(self)
+        self:UnregisterAllEvents()
+        C_Timer.After(4, function()
+            if IsAddOnLoaded and IsAddOnLoaded(OLD_ADDON) then
+                StaticPopup_Show("NULLGATES_CHAT_OLD_ADDON")
+            end
+        end)
+    end)
+end

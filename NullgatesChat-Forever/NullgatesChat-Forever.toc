@@ -1,12 +1,12 @@
 ## Interface: 16001
-## Title: |cff00c0ffBleakfiber's Chat|r - |cffffd100Forever|r
+## Title: |cff00c0ffNullgate's Chat|r - |cffffd100Forever|r
 ## Notes: A high-performance, minimalist chat suite featuring link clicking, persistent history, whisper popouts, and class colors for World of Warcraft Forever.
-## Author: Bleakfiber
-## Version: 1.0.9
-## SavedVariables: BleakfibersChatDB, BleakfibersChatHistory
-## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibSharedMedia-3.0, BleakfibersAddonConfigForever
+## Author: Nullgate Studios
+## Version: 1.1.0
+## SavedVariables: NullgatesChatDB, NullgatesChatHistory
+## OptionalDeps: LibStub, CallbackHandler-1.0, Ace3, LibSharedMedia-3.0, NullgatesAddonConfig-Forever
 ## X-License: Restricted - Source Available (All Rights Reserved, No Derivatives)
-## X-Website: https://github.com/Bleakfiber/BleakfibersChat-Forever
+## X-Website: https://github.com/nullgatestudios/NullgatesChat-Forever
 
 Libs\Libs.xml
 Media\Media.lua

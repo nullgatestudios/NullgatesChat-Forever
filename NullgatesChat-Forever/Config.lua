@@ -1,12 +1,12 @@
 --[[
-    Bleakfiber's Chat - Config.lua
+    Nullgate's Chat - Config.lua
     Data Layer: SavedVariables Schema, Non-Destructive Profiles,
     Master Hub Integration & Slash Command Dispatcher
 ]]
 
 local addonName, BFC = ...
 BFC = BFC or {}
-_G["BleakfibersChat"] = BFC
+_G["NullgatesChat"] = BFC
 
 BFC.addonName = addonName
 BFC.version = "1.0.9"
@@ -78,7 +78,7 @@ BFC.DB_DEFAULTS = DB_DEFAULTS
 -------------------------------------------------------------------------------]]
 function BFC:InitDB()
     if LibStub and LibStub("AceDB-3.0", true) then
-        self.dbObject = LibStub("AceDB-3.0"):New("BleakfibersChatDB", DB_DEFAULTS, true)
+        self.dbObject = LibStub("AceDB-3.0"):New("NullgatesChatDB", DB_DEFAULTS, true)
         self.db = self.dbObject.profile
 
         self.dbObject.RegisterCallback(self, "OnProfileChanged", "OnProfileChanged")
@@ -86,8 +86,8 @@ function BFC:InitDB()
         self.dbObject.RegisterCallback(self, "OnProfileReset", "OnProfileChanged")
     else
         -- Fallback standalone persistence
-        BleakfibersChatDB = BleakfibersChatDB or {}
-        local raw = BleakfibersChatDB
+        NullgatesChatDB = NullgatesChatDB or {}
+        local raw = NullgatesChatDB
         local def = DB_DEFAULTS.profile
 
         for k, v in pairs(def) do
@@ -103,8 +103,8 @@ function BFC:InitDB()
     end
 
     -- Global chat history container
-    _G["BleakfibersChatHistory"] = _G["BleakfibersChatHistory"] or {}
-    self.historyDB = _G["BleakfibersChatHistory"]
+    _G["NullgatesChatHistory"] = _G["NullgatesChatHistory"] or {}
+    self.historyDB = _G["NullgatesChatHistory"]
 end
 
 function BFC:OnProfileChanged()
@@ -175,21 +175,21 @@ function BFC:DeleteProfile(profileKey)
 end
 
 --[[-----------------------------------------------------------------------------
-    Soft Register with BleakfibersAddonConfigForever (Master Hub)
+    Soft Register with NullgatesAddonConfigForever (Master Hub)
 -------------------------------------------------------------------------------]]
 function BFC:RegisterWithMasterConfig()
-    local BAC = _G["BleakfibersAddonConfigForever"] or _G["BleakfibersAddonConfig"]
+    local BAC = _G["NullgatesAddonConfigForever"] or _G["NullgatesAddonConfig"]
     if not (BAC and BAC.RegisterModule) then
         return
     end
 
-    BAC:RegisterModule("BleakfibersChat", {
-        id = "BleakfibersChat",
-        name = "Bleakfiber's Chat",
+    BAC:RegisterModule("NullgatesChat", {
+        id = "NullgatesChat",
+        name = "Nullgate's Chat",
         sidebarName = "Chat",
         version = self.version,
-        author = "Bleakfiber",
-        isBleakfiber = true,
+        author = "Nullgate Studios",
+        isNullgate = true,
         description = "High-performance, minimalist chat suite featuring link clicking, persistent history, whisper popouts, and class colors.",
         db = self.db,
         getDB = function() return BFC.db end,
@@ -236,28 +236,28 @@ function BFC:RegisterWithMasterConfig()
 end
 
 function BFC:OpenSettings()
-    local BAC = _G["BleakfibersAddonConfigForever"] or _G["BleakfibersAddonConfig"]
+    local BAC = _G["NullgatesAddonConfigForever"] or _G["NullgatesAddonConfig"]
     if BAC and (BAC.OpenToModule or BAC.SelectModule) and not IsShiftKeyDown() then
         if BAC.OpenToModule then
-            BAC:OpenToModule("BleakfibersChat")
+            BAC:OpenToModule("NullgatesChat")
         elseif BAC.SelectModule then
             if BAC.ShowUI then BAC:ShowUI() end
-            BAC:SelectModule("BleakfibersChat")
+            BAC:SelectModule("NullgatesChat")
         end
     elseif self.UI and self.UI.ToggleStandaloneWindow then
         self.UI:ToggleStandaloneWindow()
     else
-        print("|cff00c0ffBleakfiber's Chat:|r Settings UI is loading...")
+        print("|cff00c0ffNullgate's Chat:|r Settings UI is loading...")
     end
 end
 
 --[[-----------------------------------------------------------------------------
     Slash Commands Handler
 -------------------------------------------------------------------------------]]
-SLASH_BLEAKFIBERSCHAT1 = "/bfchat"
-SLASH_BLEAKFIBERSCHAT2 = "/chat"
+SLASH_NULLGATESCHAT1 = "/nchat"
+SLASH_NULLGATESCHAT2 = "/chat"
 
-SlashCmdList["BLEAKFIBERSCHAT"] = function(msg)
+SlashCmdList["NULLGATESCHAT"] = function(msg)
     local cmd = msg and msg:trim():lower() or ""
     local arg1, arg2 = cmd:match("^(%S+)%s*(.*)$")
 
@@ -270,15 +270,15 @@ SlashCmdList["BLEAKFIBERSCHAT"] = function(msg)
     elseif arg1 == "history" and arg2 == "clear" then
         if BFC.ClearHistory then
             BFC:ClearHistory()
-        elseif _G["BleakfibersChatHistory"] then
-            wipe(_G["BleakfibersChatHistory"])
+        elseif _G["NullgatesChatHistory"] then
+            wipe(_G["NullgatesChatHistory"])
         end
-        print("|cff00c0ffBleakfiber's Chat:|r Chat and command history buffers cleared.")
+        print("|cff00c0ffNullgate's Chat:|r Chat and command history buffers cleared.")
     elseif arg1 == "reset" then
         BFC:ResetProfile()
-        print("|cff00c0ffBleakfiber's Chat:|r Profile settings reset to defaults.")
+        print("|cff00c0ffNullgate's Chat:|r Profile settings reset to defaults.")
     else
-        print("|cff00c0ffBleakfiber's Chat:|r Commands:")
+        print("|cff00c0ffNullgate's Chat:|r Commands:")
         print("  |cffffd100/bfchat|r - Open Settings")
         print("  |cffffd100/bfchat copy|r - Copy active chat window text")
         print("  |cffffd100/bfchat history clear|r - Clear stored history")

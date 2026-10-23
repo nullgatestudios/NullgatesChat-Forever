@@ -1,5 +1,5 @@
 --[[
-    Bleakfiber's Chat - UI.lua
+    Nullgate's Chat - UI.lua
     Presentation Layer: Dark Slate & Gold Theme, Widget Factory,
     Modular Tabbed Options Panel, Responsive Reflow & Standalone Fallback Window
 ]]
@@ -7,12 +7,12 @@
 local addonName, BFC = ...
 BFC = BFC or {}
 
-local ADDON_NAME = "BleakfibersChat"
-local FULL_TITLE = "Bleakfiber's Chat"
+local ADDON_NAME = "NullgatesChat"
+local FULL_TITLE = "Nullgate's Chat"
 
 local UI = {}
 BFC.UI = UI
-_G["BleakfibersChatUI"] = UI
+_G["NullgatesChatUI"] = UI
 
 -- Theme Colors: Dark Slate & Gold
 local COLORS = {
@@ -336,7 +336,7 @@ function UI:GetAvailableFonts()
     end
     local standardFonts = {
         "Nata Sans Regular", "Nata Sans Bold", "Nata Sans Medium",
-        "BleakUI Regular", "BleakUI Bold",
+        "NullgateUI Regular", "NullgateUI Bold",
         "Friz Quadrata TT", "Arial Narrow", "Skurri", "Morpheus"
     }
     for _, f in ipairs(standardFonts) do
@@ -742,7 +742,7 @@ function UI:BuildOptions(parentContainer, isMasterHub)
     tabContent:SetBackdropBorderColor(unpack(COLORS.goldMuted))
 
     -- ScrollFrame for Tab Content
-    local scrollFrame = CreateFrame("ScrollFrame", "BleakChatOptionsScrollFrame", tabContent, "UIPanelScrollFrameTemplate")
+    local scrollFrame = CreateFrame("ScrollFrame", "NullgateChatOptionsScrollFrame", tabContent, "UIPanelScrollFrameTemplate")
     scrollFrame:SetPoint("TOPLEFT", tabContent, "TOPLEFT", 8, -8)
     scrollFrame:SetPoint("BOTTOMRIGHT", tabContent, "BOTTOMRIGHT", -26, 8)
 
@@ -955,10 +955,10 @@ function UI:BuildOptions(parentContainer, isMasterHub)
     local btnClearHistory = self:CreateButton(pHistory, "BFC_BtnClearHistory", "Clear Stored History", 16, 0, 160, 24, function()
         if BFC.ClearHistory then
             BFC:ClearHistory()
-        elseif _G["BleakfibersChatHistory"] then
-            wipe(_G["BleakfibersChatHistory"])
+        elseif _G["NullgatesChatHistory"] then
+            wipe(_G["NullgatesChatHistory"])
         end
-        print("|cff00c0ffBleakfiber's Chat:|r History buffer cleared.")
+        print("|cff00c0ffNullgate's Chat:|r History buffer cleared.")
     end)
 
     local hSticky = self:CreateSectionHeader(pHistory, "EditBox & Command Memory", 16, 0)
@@ -1328,7 +1328,7 @@ function UI:BuildOptions(parentContainer, isMasterHub)
             newProfileName = ""
             if ebNewProfile and ebNewProfile.SetText then ebNewProfile:SetText("") end
             UI:Refresh()
-            print(string.format("|cff00c0ffBleakfiber's Chat:|r Profile created."))
+            print(string.format("|cff00c0ffNullgate's Chat:|r Profile created."))
         end
     end)
 
@@ -1345,14 +1345,14 @@ function UI:BuildOptions(parentContainer, isMasterHub)
         if copyProfileKey and copyProfileKey ~= "" then
             BFC:CopyProfile(copyProfileKey)
             UI:Refresh()
-            print(string.format("|cff00c0ffBleakfiber's Chat:|r Profile copied from |cffffd100%s|r.", copyProfileKey))
+            print(string.format("|cff00c0ffNullgate's Chat:|r Profile copied from |cffffd100%s|r.", copyProfileKey))
         end
     end)
 
     local btnResetProfile = self:CreateButton(pProfiles, "BFC_BtnResetProfile", "Reset Profile to Default", 16, 0, 160, 22, function()
         BFC:ResetProfile()
         UI:Refresh()
-        print("|cff00c0ffBleakfiber's Chat:|r Active profile reset to defaults.")
+        print("|cff00c0ffNullgate's Chat:|r Active profile reset to defaults.")
     end)
 
     local btnDeleteProfile = self:CreateButton(pProfiles, "BFC_BtnDeleteProfile", "Delete Active Profile", 16, 0, 140, 22, function()
@@ -1360,9 +1360,9 @@ function UI:BuildOptions(parentContainer, isMasterHub)
         if cur and cur ~= "Default" then
             BFC:DeleteProfile(cur)
             UI:Refresh()
-            print(string.format("|cff00c0ffBleakfiber's Chat:|r Profile |cffffd100%s|r deleted.", cur))
+            print(string.format("|cff00c0ffNullgate's Chat:|r Profile |cffffd100%s|r deleted.", cur))
         else
-            print("|cff00c0ffBleakfiber's Chat:|r Cannot delete the Default profile.")
+            print("|cff00c0ffNullgate's Chat:|r Cannot delete the Default profile.")
         end
     end)
 
